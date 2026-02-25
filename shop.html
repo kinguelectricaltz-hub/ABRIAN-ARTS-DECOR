@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Abrian Arts & Decor</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1e2a1e;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== SLIDING BACKGROUND HERO WITH 10 IMAGES ===== */
+    .shop-hero-slideshow {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+      border-radius: 0 0 60px 60px;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-warm);
+    }
+
+    .shop-slide-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: shopSlideShow 40s infinite;
+      will-change: opacity;
+      transition: opacity 2s ease-in-out;
+    }
+
+    /* 10 product-matching images - all wooden crafts, utensils, decor */
+    .shop-slide-bg:nth-child(1) { 
+      background-image: url('https://images.unsplash.com/photo-1606756790138-261d2b21cd75?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 0s; 
+    } /* Wooden utensils set */
+    .shop-slide-bg:nth-child(2) { 
+      background-image: url('https://images.unsplash.com/photo-1581539250439-c96689b516dd?q=80&w=1965&auto=format&fit=crop'); 
+      animation-delay: 4s; 
+    } /* Wooden bowl */
+    .shop-slide-bg:nth-child(3) { 
+      background-image: url('https://images.unsplash.com/photo-1578301978018-300d548c0c9c?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 8s; 
+    } /* Custom wooden sign */
+    .shop-slide-bg:nth-child(4) { 
+      background-image: url('https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 12s; 
+    } /* Geometric decor */
+    .shop-slide-bg:nth-child(5) { 
+      background-image: url('https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 16s; 
+    } /* Wooden ladle and spoon */
+    .shop-slide-bg:nth-child(6) { 
+      background-image: url('https://images.unsplash.com/photo-1611597617096-fe8cdf3b5b7b?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 20s; 
+    } /* Cooking fork and spoon */
+    .shop-slide-bg:nth-child(7) { 
+      background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=1980&auto=format&fit=crop'); 
+      animation-delay: 24s; 
+    } /* Wooden giraffe (decor) */
+    .shop-slide-bg:nth-child(8) { 
+      background-image: url('https://images.unsplash.com/photo-1595436241642-48d6b6741354?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 28s; 
+    } /* Serving tray */
+    .shop-slide-bg:nth-child(9) { 
+      background-image: url('https://images.unsplash.com/photo-1615391736206-6e2229bc3cfc?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 32s; 
+    } /* Inspirational plaque */
+    .shop-slide-bg:nth-child(10) { 
+      background-image: url('https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1974&auto=format&fit=crop'); 
+      animation-delay: 36s; 
+    } /* Coaster set */
+
+    @keyframes shopSlideShow {
+      0% { opacity: 0; }
+      2% { opacity: 1; }
+      8% { opacity: 1; }
+      10% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .shop-hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(43, 59, 43, 0.7) 0%, rgba(139, 110, 75, 0.6) 100%);
+      z-index: 2;
+    }
+
+    .shop-hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .shop-hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      line-height: 1.2;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .shop-hero-content h1 span {
+      font-weight: 600;
+      color: #d8b56e;
+      display: block;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      letter-spacing: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .shop-hero-content p {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+      font-weight: 300;
+    }
+
+    .shop-hero-badge {
+      display: inline-block;
+      background: #c97c5d;
+      color: white;
+      padding: 0.5rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* header with cart (Tronic style) */
+    .shop-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo-small a {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #4b6b4b;
+      text-decoration: none;
+    }
+
+    .cart-preview {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f9fafb;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .cart-preview i {
+      font-size: 1.5rem;
+      color: #4b6b4b;
+    }
+
+    .cart-preview small {
+      color: #6b7280;
+    }
+
+    /* Free shipping banner (exactly like Tronic) */
+    .shipping-notice {
+      background: #eef2ee;
+      text-align: center;
+      padding: 0.7rem;
+      margin: 1rem 0 2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #2c4a2c;
+    }
+
+    /* product grid layout */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .product-card {
+      border: 1px solid #f0f0f0;
+      border-radius: 20px;
+      padding: 1.2rem;
+      transition: box-shadow 0.2s;
+      background: white;
+      position: relative;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+      border-color: #d0b69c;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #f6f2ed;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ad8b6e;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%23b89b84" stroke-width="1"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>');
+      background-repeat: repeat;
+      background-size: 40px;
+    }
+
+    .product-sku {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.2rem;
+    }
+
+    .product-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0.3rem 0 0.5rem;
+      color: #1f2a1f;
+      line-height: 1.4;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      color: #5f6b5f;
+      margin-bottom: 1rem;
+    }
+
+    .price-area {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .current-price {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #a77b55;
+    }
+
+    .old-price {
+      color: #9ca3af;
+      text-decoration: line-through;
+      font-size: 0.9rem;
+    }
+
+    .add-to-cart {
+      display: block;
+      width: 100%;
+      background: #4b6b4b;
+      color: white;
+      text-align: center;
+      padding: 0.9rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 1rem;
+    }
+
+    .add-to-cart i {
+      margin-right: 0.5rem;
+    }
+
+    .add-to-cart:hover {
+      background: #2f4a2f;
+    }
+
+    /* out of stock badge (like Tronic "Sold Out") */
+    .sold-out {
+      opacity: 0.7;
+    }
+    .sold-out .add-to-cart {
+      background: #d1d5db;
+      pointer-events: none;
+    }
+
+    /* new arrival badge */
+    .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #a77b55;
+      color: white;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* navigation between pages - FIXED */
+    .back-link {
+      margin: 2rem 0 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .back-link a {
+      text-decoration: none;
+      color: #4b6b4b;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #f0f4f0;
+      border-radius: 30px;
+      transition: all 0.2s;
+    }
+    .back-link a:hover {
+      background: #4b6b4b;
+      color: white;
+    }
+    .back-link a:hover i {
+      color: white;
+    }
+    .back-link span {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    /* floating social (copy from main for consistency) */
+    .floating-social {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+    .floating-social a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      transition: 0.2s;
+      color: white;
+      text-decoration: none;
+    }
+    .floating-social a.whatsapp { background: #25D366; }
+    .floating-social a.instagram { background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5); }
+    .floating-social a.tiktok { background: #010101; }
+    .floating-social a.facebook { background: #1877F2; }
+    .floating-social a:hover { transform: scale(1.15); }
+
+    /* Home button in header */
+    .home-link {
+      margin-left: 1rem;
+    }
+    .home-link a {
+      text-decoration: none;
+      color: #4b6b4b;
+      font-size: 0.9rem;
+      border: 1px solid #4b6b4b;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      transition: all 0.2s;
+    }
+    .home-link a:hover {
+      background: #4b6b4b;
+      color: white;
+    }
+
+    @media (max-width: 700px) {
+      .shop-header { flex-direction: column; gap: 1rem; }
+      .back-link { flex-direction: column; align-items: flex-start; }
+      .shop-hero-slideshow { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="floating-social">
+  <a href="https://wa.me/255789124211" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://instagram.com/abrianartdecor" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://tiktok.me/abrianartdecor" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+  <a href="https://facebook.com/abrianartdecor" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+</div>
+
+<!-- Hero Slideshow with 10 product-matching images -->
+<div class="shop-hero-slideshow">
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-slide-bg"></div>
+  <div class="shop-hero-overlay"></div>
+  <div class="shop-hero-content">
+    <h1>Abrian Arts <span>Shop Collection</span></h1>
+    <p>Hand-carved wooden utensils · decor · custom signs</p>
+    <div class="shop-hero-badge">✓ 100% Handcrafted in Tanzania</div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- FIXED: Better back navigation with multiple options -->
+  <div class="back-link">
+    <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Go Back</a>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <span>You're in <strong>Abrian Arts Shop</strong></span>
+  </div>
+
+  <header class="shop-header">
+    <div class="logo-small">
+      <a href="/">Abrian Arts <span style="font-weight:300; color:#a77b55;">/ Shop</span></a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <div class="home-link">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+      </div>
+      <div class="cart-preview">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart subtotal <strong>0.00 TZS</strong></span>
+        <small>| Free shipping over 100,000 TZS</small>
+      </div>
+    </div>
+  </header>
+
+  <div class="shipping-notice">
+    <i class="fas fa-truck"></i> Free shipping on orders over 100,000.00 TZS!
+  </div>
+
+  <h1 style="font-weight:350; margin: 1.5rem 0 0.5rem;">New Arrivals</h1>
+
+  <!-- PRODUCT GRID - first row "New Arrivals" (Tronic style) -->
+  <div class="product-grid">
+    <!-- Product 1 - Vyombo set -->
+    <div class="product-card">
+      <div class="badge">NEW</div>
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-VY-004</div>
+      <div class="product-title">4-Piece Wooden Utensil Set</div>
+      <div class="product-description">Hand-carved mango wood – spoon, spatula, ladle, fork.</div>
+      <div class="price-area">
+        <span class="current-price">28,000 TZS</span>
+        <span class="old-price">32,000 TZS</span>
+      </div>
+      <a href="https://wa.me/255789124211?text=I'm%20interested%20in%204-Piece%20Utensil%20Set%20(SKU%20AB-VY-004)" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+
+    <!-- Product 2 - Large wooden bowl -->
+    <div class="product-card">
+      <div class="badge">NEW</div>
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-DC-021</div>
+      <div class="product-title">Decorative Bowl – 35cm</div>
+      <div class="product-description">Ideal for fruit, salad or centerpiece. Rich wood grain.</div>
+      <div class="price-area">
+        <span class="current-price">45,000 TZS</span>
+      </div>
+      <a href="https://wa.me/255789124211?text=I'm%20interested%20in%20Decorative%20Bowl%2035cm%20(SKU%20AB-DC-021)" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+
+    <!-- Product 3 - Custom sign (Mabango) -->
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-MB-102</div>
+      <div class="product-title">Custom Wedding Sign "Karibu"</div>
+      <div class="product-description">Personalised wooden sign, any text. 60x30cm.</div>
+      <div class="price-area">
+        <span class="current-price">35,000 TZS</span>
+      </div>
+      <a href="https://wa.me/255789124211?text=I'm%20interested%20in%20Custom%20Wedding%20Sign%20(SKU%20AB-MB-102)" class="add-to-cart"><i class="fab fa-whatsapp"></i> Customize & order</a>
+    </div>
+
+    <!-- Product 4 - Geometric decor -->
+    <div class="product-card">
+      <div class="badge">NEW</div>
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-DC-045</div>
+      <div class="product-title">Geometric Shelf Set (2 pcs)</div>
+      <div class="product-description">Modern decor, natural finish.</div>
+      <div class="price-area">
+        <span class="current-price">32,000 TZS</span>
+        <span class="old-price">38,000 TZS</span>
+      </div>
+      <a href="https://wa.me/255789124211?text=I'm%20interested%20in%20Geometric%20Set%20(SKU%20AB-DC-045)" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+  </div>
+
+  <h1 style="font-weight:350; margin: 2.5rem 0 0.5rem;">Vyombo Mbao (Wooden Utensils)</h1>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-VY-001</div>
+      <div class="product-title">Wooden Ladle (large)</div>
+      <div class="product-description">35cm, hand carved, smooth finish.</div>
+      <div class="price-area"><span class="current-price">12,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Ladle%20large%20SKU%20AB-VY-001" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-VY-012</div>
+      <div class="product-title">Spatula set (2 pcs)</div>
+      <div class="product-description">Slotted & solid, ergonomic.</div>
+      <div class="price-area"><span class="current-price">18,500 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Spatula%20set%20SKU%20AB-VY-012" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+    <div class="product-card sold-out">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-VY-009</div>
+      <div class="product-title">Wooden Mortar & Pestle</div>
+      <div class="product-description">Small size (kinze) – temporarily out of stock.</div>
+      <div class="price-area"><span class="current-price">35,000 TZS</span></div>
+      <span class="add-to-cart"><i class="fas fa-times"></i> Sold Out</span>
+    </div>
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-VY-022</div>
+      <div class="product-title">Cooking Spoon (3 pcs)</div>
+      <div class="product-description">Different sizes for kitchen.</div>
+      <div class="price-area"><span class="current-price">22,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Cooking%20spoon%20set%20SKU%20AB-VY-022" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+  </div>
+
+  <h1 style="font-weight:350; margin: 2.5rem 0 0.5rem;">Wooden Decor & Mabango</h1>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-DC-033</div>
+      <div class="product-title">Hand-carved Giraffe</div>
+      <div class="product-description">25cm, rustic decor piece.</div>
+      <div class="price-area"><span class="current-price">38,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Giraffe%20SKU%20AB-DC-033" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-MB-201</div>
+      <div class="product-title">Business Sign (custom)</div>
+      <div class="product-description">Engraved, any text/logo. 80x40cm.</div>
+      <div class="price-area"><span class="current-price">55,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Business%20sign%20inquiry%20SKU%20AB-MB-201" class="add-to-cart"><i class="fab fa-whatsapp"></i> Request quote</a>
+    </div>
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-DC-050</div>
+      <div class="product-title">Serving Tray (with handles)</div>
+      <div class="product-description">45cm, perfect for gifts.</div>
+      <div class="price-area"><span class="current-price">41,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Tray%20SKU%20AB-DC-050" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+    <div class="product-card">
+      <div class="product-image"></div>
+      <div class="product-sku">SKU AB-MB-107</div>
+      <div class="product-title">Directional Sign (arrow)</div>
+      <div class="product-description">Custom text, indoor/outdoor.</div>
+      <div class="price-area"><span class="current-price">28,000 TZS</span></div>
+      <a href="https://wa.me/255789124211?text=Directional%20sign%20SKU%20AB-MB-107" class="add-to-cart"><i class="fab fa-whatsapp"></i> Add to cart</a>
+    </div>
+  </div>
+
+  <!-- small footer inside shop -->
+  <div style="margin: 3rem 0 2rem; text-align: center; color: #6b7280;">
+    <p><i class="fas fa-store"></i> Visit our physical shops in Dar es Salaam & Dodoma  |  WhatsApp +255 789 124 211</p>
+    <p style="margin-top: 1rem;">
+      <a href="/" style="color: #4b6b4b; text-decoration: none; border-bottom: 1px dashed;">← Back to Abrian Arts Home</a>
+    </p>
+  </div>
+</div>
+
+<!-- no extra footer to keep tidy -->
+</body>
+</html>
